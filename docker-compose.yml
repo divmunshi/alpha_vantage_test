@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  streamlit:
+    build: ./streamlit
+    ports:
+      - "8501:8501"
+    depends_on:
+      - postgres
+    # Add other configuration options for your Streamlit service
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_HOST: data-sandbox.c1tykfvfhpit.eu-west-2.rds.amazonaws.com
+      POSTGRES_DB: pagila
+      POSTGRES_USER: de_dimu
+      POSTGRES_PASSWORD: inmagged
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+    # Add other configuration options for your PostgreSQL service
